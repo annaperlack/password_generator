@@ -10,10 +10,6 @@ function generatePassword() {
   return generatedPasswordWithOptions;
 }
 
-function generatePasswordWithOptions(passwordOptions) {
-  
-}
-
 function getPasswordOptions() {
   var options = {
     length: 10,
@@ -22,10 +18,31 @@ function getPasswordOptions() {
     hasSpecialCharacter: true,
     hasNumericCharacter: true,
   };
-
   return options;
 }
 
+function generatePasswordWithOptions(passwordOptions) {
+  var password = [];
+  var availableCharacters = [];
+
+  if (passwordOptions.hasUppercaseLetter) {
+    availableCharacters = availableCharacters.concat(hasUppercaseLetter);
+  }
+
+  if (passwordOptions.hasLowercaseLetter) {
+    availableCharacters = availableCharacters.concat(hasLowercaseLetter);
+  }
+
+  if (passwordOptions.hasSpecialCharacter) {
+    availableCharacters = availableCharacters.concat(hasSpecialCharacter);
+  }
+
+  if (passwordOptions.hasNumericCharacter) {
+    availableCharacters = availableCharacters.concat(hasNumericCharacter);
+  }
+
+  return password.join('');
+}
 
 
  
