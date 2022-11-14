@@ -4,6 +4,31 @@ var lowercaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '
 var specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '?',]; 
 var numericCharacters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',];
 
+function generatePassword() {
+  var passwordOptions = getPasswordOptions();
+  var generatedPasswordWithOptions = generatePasswordWithOptions(passwordOptions);
+  return generatedPasswordWithOptions;
+}
+
+function generatePasswordWithOptions(passwordOptions) {
+  
+}
+
+function getPasswordOptions() {
+  var options = {
+    length: 10,
+    hasUppercaseLetter: true,
+    hasLowercaseLetter: true,
+    hasSpecialCharacter: true,
+    hasNumericCharacter: true,
+  };
+
+  return options;
+}
+
+
+
+ 
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
