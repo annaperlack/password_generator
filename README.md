@@ -15,6 +15,9 @@ The password generator allows the user to generate a password of 8-128 character
 
 [website](https://annaperlack.github.io/Portfolio-Perlack/)
 
+![screenshot](Develop/images/password-screenshot.png)
+
+
 ## Credits
 
 N/A
