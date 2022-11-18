@@ -1,4 +1,4 @@
-// Assignment Code
+// password character options
 var uppercaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',];
 var lowercaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',];
 var specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '?',]; 
@@ -11,15 +11,16 @@ function generatePassword() {
 }
 
 function getPasswordOptions() {
-  var length = parseInt (
-    prompt('How many characters would you like to include in your password?'),
-  );
+  var lengthResponse = prompt('How many characters would you like to include in your password?');
+  var length = parseInt(lengthResponse);
 
+  //validating password length and type 
   if (Number.isNaN(length) || length < 8 || length > 129) {
     alert('Password length must be a number that is between 8 and 128 characters');
     return null;
   }
 
+  //password type confirmations
   var hasUppercaseLetter = confirm(
     'Click OK if you would like to include uppercase letters.'
   );
@@ -35,6 +36,7 @@ function getPasswordOptions() {
   var hasNumericCharacter = confirm(
     'Click OK if you would like to include numbers.'
   );
+
 
   if (
     hasUppercaseLetter === false &&
@@ -95,13 +97,9 @@ function generatePasswordWithOptions(passwordOptions) {
 }
 
 function getRandom(availableCharacters) {
-  var randIndex = Math.floor(Math.random() * availableCharacters.length);
-  var randElement = availableCharacters[randIndex];
-
-  return randElement;
+  return availableCharacters[Math.floor(Math.random()*availableCharacters.length)];
 }
 
- 
 var generateBtn = document.querySelector("#generate");
 
 
