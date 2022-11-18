@@ -4,12 +4,14 @@ var lowercaseLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '
 var specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '?',]; 
 var numericCharacters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',];
 
+//generate a password with options
 function generatePassword() {
   var passwordOptions = getPasswordOptions();
   var generatedPasswordWithOptions = generatePasswordWithOptions(passwordOptions);
   return generatedPasswordWithOptions;
 }
 
+//prompt for how many characters user wants in password 
 function getPasswordOptions() {
   var lengthResponse = prompt('How many characters would you like to include in your password?');
   var length = parseInt(lengthResponse);
@@ -37,7 +39,7 @@ function getPasswordOptions() {
     'Click OK if you would like to include numbers.'
   );
 
-
+//confirming that user has selected at least 1 character type
   if (
     hasUppercaseLetter === false &&
     hasLowercaseLetter === false &&
@@ -48,21 +50,26 @@ function getPasswordOptions() {
     return null;
   }
 
-  var options = {
+//returning the options 
+  return {
     length: length,
     hasUppercaseLetter: hasUppercaseLetter,
     hasLowercaseLetter: hasLowercaseLetter,
     hasSpecialCharacter: hasSpecialCharacter,
     hasNumericCharacter: hasNumericCharacter,
   };
-
-  return options;
 }
 
+//generate password given user password selections
 function generatePasswordWithOptions(passwordOptions) {
   var password = [];
   var availableCharacters = [];
   var guaranteedCharacters = [];
+
+/*
+combining character type arrays intor available character list
+selecting random character and adding into guaranteed character list
+*/
 
   if (passwordOptions.hasUppercaseLetter) {
     availableCharacters = availableCharacters.concat(uppercaseLetters);
@@ -84,31 +91,36 @@ function generatePasswordWithOptions(passwordOptions) {
     guaranteedCharacters.push(getRandom(numericCharacters));
   }
 
+//selecting a random character from available charcters list
+function getRandom(availableCharacters) {
+  return availableCharacters[Math.floor(Math.random()*availableCharacters.length)];
+}
+
+//loop to select a random character from available character list and adding character to password
   for (var i=0; i < passwordOptions.length; i++) {
     var character = getRandom(availableCharacters);
     password.push(character);
   }
 
+ //loop to get character from guaranteed character list and adding it to password to ensure at least 1 character of each selected type
   for (var i = 0; i < guaranteedCharacters.length; i++) {
     password[i] = guaranteedCharacters[i];
   }
-
+//joining all characters together to create string password
   return password.join('');
 }
 
-function getRandom(availableCharacters) {
-  return availableCharacters[Math.floor(Math.random()*availableCharacters.length)];
-}
-
-var generateBtn = document.querySelector("#generate");
-
-
+//generating password and displaying generated password to user 
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
+//referencing the id of the generate button in HTML
+var generateBtn = document.querySelector("#generate");
+
+//adding functionality to run "write Password" when button is clicked
 generateBtn.addEventListener("click", writePassword);
+
