@@ -15,35 +15,25 @@ function getPasswordOptions() {
     prompt('How many characters would you like to include in your password?'),
   );
 
-  if (Number.isNaN(length)) {
-    alert('Password length must be provided as a number');
-    return null;
-  }
-  
-  if (length < 8) {
-    alert('Password length must be at least 8 characters');
-    return null;
-  }
-
-  if (length > 128) {
-    alert('Password length must less than 129 characters');
+  if (Number.isNaN(length) || length < 8 || length > 129) {
+    alert('Password length must be a number that is between 8 and 128 characters');
     return null;
   }
 
   var hasUppercaseLetter = confirm(
-    'Click OK to confirm including uppercase letters.'
+    'Click OK if you would like to include uppercase letters.'
   );
 
   var hasLowercaseLetter = confirm(
-    'Click OK to confirm including lowercase letters.'
+    'Click OK if you would like to include lowercase letters.'
   );
 
   var hasSpecialCharacter = confirm(
-    'Click OK to confirm including special characters.'
+    'Click OK if you would like to include special characters.'
   );
 
   var hasNumericCharacter = confirm(
-    'Click OK to confirm including numeric characters.'
+    'Click OK if you would like to include numbers.'
   );
 
   if (
